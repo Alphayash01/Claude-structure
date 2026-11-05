@@ -101,3 +101,10 @@ FILES["docs/adr/0000-template.md"] = FileSpec(headings=_ADR_HEADINGS, purpose_li
 FILES["docs/adr/0001-record-architecture-decisions.md"] = FileSpec(
     headings=_ADR_HEADINGS, links=("docs/adr/README.md", "docs/adr/0000-template.md"),
     add_slot=False, purpose_line=False)
+FILES["docs/DEVELOPMENT.md"] = FileSpec(headings=(
+    "Prerequisites", "Setup", "Environment variables", "Commands", "Testing",
+    "Debugging", "Troubleshooting"), links=("RULES.md",))
+FILES["docs/ONBOARDING.md"] = FileSpec(headings=(
+    "Day 0: access", "Day 1: set up", "Week 1: goals", "Your buddy",
+    "How we communicate", "Team contacts", "Tools and accounts", "Team rituals"),
+    links=("docs/DEVELOPMENT.md", "INTENT.md", "docs/ARCHITECTURE.md", "RULES.md", "docs/RUNBOOK.md"))
