@@ -75,10 +75,10 @@ Each file builds on the ones before it.
 Run from the repository root:
 
 ```sh
-grep -rnE "\{\{[A-Z_]+\}\}|ADD:" .
+grep -rnE --exclude=0000-template.md "\{\{[A-Z_]+\}\}|ADD:" .
 ```
 
-No output means you're done. Until you delete it, this guide shows up in the results too.
+No output means you're done. `docs/adr/0000-template.md` is excluded because its slots must stay: every new ADR is copied from it. Until you delete it, this guide shows up in the results too.
 
 ## Keep docs healthy
 

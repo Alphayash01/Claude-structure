@@ -18,12 +18,14 @@ Exact versions are in [docs/DEVELOPMENT.md](docs/DEVELOPMENT.md#prerequisites).
 
 ```sh
 git clone {{REPO_URL}}
+cd <repository-folder>
+cp .env.example .env
 {{INSTALL_CMD}}
-{{DEV_CMD}}
 {{TEST_CMD}}
+{{DEV_CMD}}
 ```
 
-Full setup, environment variables and troubleshooting: [docs/DEVELOPMENT.md](docs/DEVELOPMENT.md).
+The last command keeps running; use a second terminal for anything else. Full setup, environment variables and troubleshooting: [docs/DEVELOPMENT.md](docs/DEVELOPMENT.md).
 
 ## Documentation
 
@@ -46,9 +48,9 @@ Full setup, environment variables and troubleshooting: [docs/DEVELOPMENT.md](doc
 
 | Link | URL |
 |---|---|
-| Production | <!-- ADD --> |
-| Staging | <!-- ADD --> |
-| Dashboards | <!-- ADD --> |
+| Production | <!-- ADD: URL --> |
+| Staging | <!-- ADD: URL --> |
+| Dashboards | <!-- ADD: URL --> |
 
 <!-- ADD: other links people need often (design files, API docs, status page) -->
 

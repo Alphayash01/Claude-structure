@@ -1,3 +1,4 @@
+import re
 import sys
 import tempfile
 import unittest
@@ -46,6 +47,19 @@ class CheckerTest(unittest.TestCase):
     def test_unclosed_comment_flagged(self):
         self.assertHas(self.check("A.md", CLEAN + "<!-- ADD: describe users\n\n## Goals\n"),
                        "unclosed HTML comment")
+
+    def test_mermaid_arrow_does_not_close_comment(self):
+        text = CLEAN + "<!-- ADD: diagram\n" + f"{FENCE}mermaid\nflowchart LR\n  a -->|x| b\n{FENCE}\n"
+        self.assertHas(self.check("A.md", text), "unclosed HTML comment")
+
+    def test_add_marker_requires_colon(self):
+        self.assertHas(self.check("A.md", CLEAN + "| <!-- ADD --> |\n"), "ADD marker without colon")
+        self.assertHas(self.check("A.md", CLEAN + "| <!-- ADD --> | <!-- ADD: x --> |\n"),
+                       "ADD marker without colon")
+
+    def test_link_case_must_match(self):
+        self.write("RULES.md", "# R\n")
+        self.assertHas(self.check("A.md", CLEAN + "[r](rules.md)\n"), "broken link")
 
     def test_add_marker_in_code_block_flagged(self):
         text = CLEAN + f"{FENCE}\n<!-- ADD: x -->\n{FENCE}\n"
@@ -146,6 +160,27 @@ class CheckerTest(unittest.TestCase):
         usage = ct.placeholder_usage(self.root)
         self.assertEqual(usage["PROJECT_NAME"], ["README.md"])
         self.assertEqual(usage["TEAM_NAME"], [])
+
+
+class TemplateGuideSearchTest(unittest.TestCase):
+    """The guide's unfinished-work search must come back empty once a project is filled in."""
+
+    def test_unfinished_search_is_empty_once_filled(self):
+        root = Path(__file__).resolve().parent.parent / "template"
+        guide = (root / "TEMPLATE_GUIDE.md").read_text(encoding="utf-8")
+        command = next(line.strip() for line in guide.splitlines() if line.strip().startswith("grep "))
+        pattern = re.search(r'"([^"]+)"', command).group(1)
+        excludes = re.findall(r"--exclude=(\S+)", command)
+        leftovers = []
+        for path in root.rglob("*.md"):
+            if path.name == "TEMPLATE_GUIDE.md" or path.name in excludes:
+                continue
+            text = path.read_text(encoding="utf-8")
+            if path.name != "0000-template.md":  # its slots stay: every new ADR is copied from it
+                text = re.sub(r"<!-- ADD:.*?-->", "", text, flags=re.S)
+            if re.search(pattern, ct.PLACEHOLDER_RE.sub("filled", text)):
+                leftovers.append(path.relative_to(root).as_posix())
+        self.assertEqual(leftovers, [])
 
 
 if __name__ == "__main__":

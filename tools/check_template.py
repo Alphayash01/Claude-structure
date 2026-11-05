@@ -26,6 +26,8 @@ REF_LINK_RE = re.compile(r"^\s*\[[^\]]+\]:\s*(\S+)")
 INLINE_CODE_RE = re.compile(r"`[^`]*`")
 HEADING_RE = re.compile(r"^#{1,6}\s+(.+?)\s*$")
 FRONT_KEY_RE = re.compile(r"^([a-z_]+):\s*(.*)$")
+ADD_RE = re.compile(r"<!--\s*ADD\b")
+ADD_SLOT_RE = re.compile(r"<!--\s*ADD:")
 DENY_RES = [(term, re.compile(rf"\b{re.escape(term)}\b", re.IGNORECASE)) for term in DENYLIST]
 
 
@@ -89,7 +91,9 @@ def check_placeholders(rel, rows):
     return errors
 
 
-def check_comments(rel, text):
+def check_comments(rel, rows):
+    # Blank out fenced lines first: a Mermaid arrow (-->) must not count as a comment close.
+    text = "\n".join(line if kind == "text" else "" for _, line, _, kind in rows)
     pos = 0
     while (start := text.find("<!--", pos)) != -1:
         end = text.find("-->", start + 4)
@@ -106,7 +110,7 @@ def check_code(rel, rows):
         if kind == "open":
             pending = n if lang == "mermaid" else None
         elif kind == "code":
-            if "<!-- ADD:" in line:
+            if ADD_RE.search(line):
                 errors.append(f"{rel}:{n}: ADD marker inside code block")
             if lang == "mermaid":
                 if "{{" in line or "ADD:" in line:
@@ -147,6 +151,8 @@ def resolve(rel, target):
 
 
 def check_links(root, rel, rows, spec, strict):
+    # Exact-case paths: Windows file lookups ignore case, GitHub links do not.
+    existing = {p.relative_to(root).as_posix() for p in root.rglob("*") if p.is_file()}
     errors, linked = [], set()
     for n, target in link_targets(rows):
         resolved = resolve(rel, target)
@@ -161,7 +167,7 @@ def check_links(root, rel, rows, spec, strict):
             errors.append(f"{where} relative link in .github form: {target}")
         elif path == GUIDE and rel != GUIDE:
             errors.append(f"{where} link to TEMPLATE_GUIDE.md")
-        elif not (root / path).is_file():
+        elif path not in existing:
             if strict or path not in REQUIRED_FILES:
                 errors.append(f"{where} broken link: {target}")
         elif anchor and path.endswith(".md"):
@@ -229,11 +235,14 @@ def check_file(root, rel, spec, strict_links=True):
     text = path.read_text(encoding="utf-8")
     lines = text.splitlines()
     rows = parse(text)
-    errors = (check_placeholders(rel, rows) + check_comments(rel, text) + check_code(rel, rows)
+    errors = (check_placeholders(rel, rows) + check_comments(rel, rows) + check_code(rel, rows)
               + check_links(root, rel, rows, spec, strict_links) + check_headings(rel, rows, spec))
+    errors += [f"{rel}:{n}: ADD marker without colon (the unfinished-work search can't find it)"
+               for n, line in text_lines(rows)
+               if len(ADD_RE.findall(line)) > len(ADD_SLOT_RE.findall(line))]
     if spec.purpose_line:
         errors += check_purpose(rel, rows)
-    if spec.add_slot and not any("<!-- ADD:" in line for _, line in text_lines(rows)):
+    if spec.add_slot and not any(ADD_SLOT_RE.search(line) for _, line in text_lines(rows)):
         errors.append(f"{rel}:0: missing ADD slot")
     if len(lines) > spec.max_lines:
         errors.append(f"{rel}:0: exceeds {spec.max_lines} lines ({len(lines)})")

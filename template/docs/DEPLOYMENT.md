@@ -7,9 +7,9 @@
 
 | Environment | URL | Purpose | Who can deploy | Data |
 |---|---|---|---|---|
-| dev | <!-- ADD --> | Integration of merged work | Automatic on merge | Synthetic |
-| staging | <!-- ADD --> | Release candidate, production-like | Any engineer | Synthetic or anonymized |
-| production | <!-- ADD --> | Real users | <!-- ADD: approvers --> | Real |
+| dev | <!-- ADD: URL --> | Integration of merged work | Automatic on merge | Synthetic |
+| staging | <!-- ADD: URL --> | Release candidate, production-like | Any engineer | Synthetic or anonymized |
+| production | <!-- ADD: URL --> | Real users | <!-- ADD: approvers --> | Real |
 
 Never copy production data into lower environments without anonymizing it first.
 
@@ -70,9 +70,11 @@ The same build artifact moves through every environment; only configuration chan
 
 Use **expand → migrate → contract** so every deploy can be rolled back:
 
-1. **Expand:** add new columns or tables; the old code keeps working.
-2. **Migrate:** deploy code that writes both and reads new; backfill data.
-3. **Contract:** remove the old structure in a later release.
+1. **Expand:** add the new columns or tables; the old code keeps working.
+2. **Dual-write:** deploy code that writes to both old and new, still reading old.
+3. **Backfill:** copy existing rows into the new structure; verify counts match.
+4. **Switch reads:** deploy code that reads new, still writing both until verified.
+5. **Contract:** stop writing old, then remove it in a later release.
 
 - Each migration is compatible with the previously deployed version.
 - Never drop or rename in the same release as the code change that stops using it.

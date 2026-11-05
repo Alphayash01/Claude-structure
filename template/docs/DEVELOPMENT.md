@@ -11,16 +11,17 @@
 
 ## Setup
 
-1. Clone the repository:
+1. Clone the repository and move into it:
 
    ```sh
    git clone {{REPO_URL}}
+   cd <repository-folder>
    ```
 
 2. Copy `.env.example` to `.env` and fill in local values (see [Environment variables](#environment-variables)).
 3. Install dependencies: `{{INSTALL_CMD}}`
-4. Start the app: `{{DEV_CMD}}`
-5. Verify everything works: `{{TEST_CMD}}` should pass on a fresh clone.
+4. Verify everything works: `{{TEST_CMD}}` should pass on a fresh clone.
+5. Start the app: `{{DEV_CMD}}`. It keeps running; open a second terminal for other commands.
 
 <!-- ADD: extra steps such as seeding a local database, creating accounts, or trusting local certificates -->
 

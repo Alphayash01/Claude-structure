@@ -60,10 +60,10 @@ Follow the security rules in [RULES.md](../RULES.md#security): no secrets in cod
 
 | Purpose | Tool |
 |---|---|
-| Secrets manager | <!-- ADD --> |
-| Dependency scanning | <!-- ADD --> |
-| Code scanning | <!-- ADD --> |
-| Access management | <!-- ADD --> |
+| Secrets manager | <!-- ADD: tool name --> |
+| Dependency scanning | <!-- ADD: tool name --> |
+| Code scanning | <!-- ADD: tool name --> |
+| Access management | <!-- ADD: tool name --> |
 
 ## Compliance
 

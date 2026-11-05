@@ -75,7 +75,7 @@ template/
 | `{{UPPER_SNAKE_CASE}}` | A single value, filled by find-and-replace across all files. | `{{PROJECT_NAME}}` |
 | `<!-- ADD: ... -->` | A slot for free-form project content. Invisible when rendered on GitHub. | `<!-- ADD: 2–3 sentences on what this service does -->` |
 
-Find all unfinished work with: `grep -rnE "\{\{[A-Z_]+\}\}|ADD:" .`
+Find all unfinished work with: `grep -rnE --exclude=0000-template.md "\{\{[A-Z_]+\}\}|ADD:" .` (the ADR template keeps its slots, because every new ADR is copied from it).
 
 ### 3.3 Placeholder registry
 
