@@ -88,3 +88,16 @@ FILES[".github/ISSUE_TEMPLATE/feature_request.md"] = FileSpec(headings=(
     "Problem", "Goal served", "Proposed solution", "Alternatives considered",
     "Acceptance criteria", "Out of scope"),
     links=("INTENT.md",), add_slot=False, purpose_line=False)
+FILES["docs/ARCHITECTURE.md"] = FileSpec(headings=(
+    "System context", "Components", "Data flow", "Data and storage",
+    "External dependencies", "Cross-cutting concerns", "Quality attributes",
+    "Key terms", "Known limitations and tech debt", "Decisions", "Keeping this current"),
+    links=("RULES.md", "docs/adr/README.md"))
+FILES["docs/adr/README.md"] = FileSpec(headings=(
+    "What is an ADR", "When to write one", "Statuses", "Process", "Naming", "Index"),
+    links=("docs/adr/0000-template.md", "docs/adr/0001-record-architecture-decisions.md"))
+_ADR_HEADINGS = ("Context", "Decision", "Options considered", "Consequences", "Follow-ups")
+FILES["docs/adr/0000-template.md"] = FileSpec(headings=_ADR_HEADINGS, purpose_line=False)
+FILES["docs/adr/0001-record-architecture-decisions.md"] = FileSpec(
+    headings=_ADR_HEADINGS, links=("docs/adr/README.md", "docs/adr/0000-template.md"),
+    add_slot=False, purpose_line=False)
