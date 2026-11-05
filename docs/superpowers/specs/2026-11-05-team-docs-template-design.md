@@ -213,7 +213,7 @@ Each entry lists **Built-in** content and **Slots** (`ADD`).
 | Incidents | docs/RUNBOOK.md | DEPLOYMENT, SECURITY |
 | Decisions | docs/adr/ | RULES, ARCHITECTURE, PR template |
 
-All links are relative so they work after copying into any repo.
+All links are relative so they work after copying into any repo. **Exception:** `.github/` forms are pasted into PR/issue bodies, where relative links break, so they link with `{{REPO_URL}}/blob/{{MAIN_BRANCH}}/<path>`. No file links to `TEMPLATE_GUIDE.md`, because it is deleted after adoption.
 
 ## 6. Acceptance checks
 
