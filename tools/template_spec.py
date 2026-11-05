@@ -120,3 +120,15 @@ FILES["docs/SECURITY.md"] = FileSpec(headings=(
     "Reporting a vulnerability", "Secrets", "Access control", "Dependency vulnerabilities",
     "Data classification", "Secure coding", "Tools in use", "Compliance", "This project's data"),
     links=("RULES.md", "docs/RUNBOOK.md"))
+FILES["README.md"] = FileSpec(headings=(
+    "About", "Prerequisites", "Quickstart", "Documentation", "Key links",
+    "Getting help", "Ownership"),
+    links=("INTENT.md", "RULES.md", "CONTRIBUTING.md", "CHANGELOG.md", "CLAUDE.md",
+           "docs/ARCHITECTURE.md", "docs/ONBOARDING.md", "docs/DEVELOPMENT.md",
+           "docs/DEPLOYMENT.md", "docs/RUNBOOK.md", "docs/SECURITY.md", "docs/adr/README.md"))
+FILES["CLAUDE.md"] = FileSpec(headings=(
+    "Read first", "Working agreements", "Commands", "Gotchas", "No-go areas", "Domain notes"),
+    links=("INTENT.md", "RULES.md", "docs/ARCHITECTURE.md", "docs/DEVELOPMENT.md"), max_lines=60)
+FILES["TEMPLATE_GUIDE.md"] = FileSpec(headings=(
+    "What this is", "Adopt it", "Fill order", "Placeholders", "Find unfinished work",
+    "Keep docs healthy", "When you are done"), add_slot=False)
