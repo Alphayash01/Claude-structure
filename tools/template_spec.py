@@ -1,0 +1,62 @@
+"""The design spec as data. Tasks 2-7 append FILES entries at the end."""
+from dataclasses import dataclass
+
+
+@dataclass(frozen=True)
+class FileSpec:
+    headings: tuple[str, ...] = ()
+    links: tuple[str, ...] = ()
+    max_lines: int = 150
+    add_slot: bool = True
+    purpose_line: bool = True
+
+
+REQUIRED_FILES = (
+    "README.md", "INTENT.md", "RULES.md", "CONTRIBUTING.md", "CHANGELOG.md",
+    "CLAUDE.md", "TEMPLATE_GUIDE.md",
+    "docs/ARCHITECTURE.md", "docs/ONBOARDING.md", "docs/DEVELOPMENT.md",
+    "docs/DEPLOYMENT.md", "docs/RUNBOOK.md", "docs/SECURITY.md",
+    "docs/adr/README.md", "docs/adr/0000-template.md",
+    "docs/adr/0001-record-architecture-decisions.md",
+    ".github/PULL_REQUEST_TEMPLATE.md",
+    ".github/ISSUE_TEMPLATE/bug_report.md",
+    ".github/ISSUE_TEMPLATE/feature_request.md",
+)
+
+REGISTRY = {
+    "PROJECT_NAME": "Human-readable project name",
+    "PROJECT_DESCRIPTION": "One-line description",
+    "TEAM_NAME": "Owning team",
+    "TEAM_CHANNEL": "Team chat channel",
+    "TECH_LEAD": "Technical lead / primary owner",
+    "REPO_URL": "Repository URL",
+    "ISSUE_TRACKER_URL": "Issue tracker URL",
+    "MAIN_BRANCH": "Default branch name",
+    "REQUIRED_APPROVALS": "Number of PR approvals required",
+    "ONCALL_CONTACT": "On-call rotation / pager",
+    "SECURITY_CONTACT": "Internal security contact",
+    "INSTALL_CMD": "Install dependencies",
+    "DEV_CMD": "Run locally",
+    "TEST_CMD": "Run tests",
+    "LINT_CMD": "Lint / format check",
+    "BUILD_CMD": "Production build",
+    "ADOPTION_DATE": "Date the template was adopted (ADR 0001)",
+}
+
+DENYLIST = (
+    "python", "java", "javascript", "typescript", "nodejs", "node.js", "npm",
+    "yarn", "pnpm", "pip", "maven", "gradle", "react", "angular", "vue",
+    "django", "flask", "spring", "dotnet", "golang", "rust", "php", "ruby",
+    "aws", "azure", "gcp", "heroku", "vercel", "docker", "kubernetes", "k8s",
+    "terraform", "jenkins", "circleci", "github actions", "gitlab",
+    "bitbucket", "jira", "confluence", "slack", "pagerduty", "opsgenie",
+    "datadog", "sentry", "grafana", "prometheus", "postgres", "postgresql",
+    "mysql", "mongodb", "redis",
+)
+
+ALLOWED_MERMAID_TYPES = ("flowchart", "sequenceDiagram")
+PURPOSE_PREFIX = "> **Purpose:**"
+REPO_LINK_PREFIX = "{{REPO_URL}}/blob/{{MAIN_BRANCH}}/"
+GUIDE = "TEMPLATE_GUIDE.md"
+
+FILES: dict[str, FileSpec] = {}
