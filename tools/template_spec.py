@@ -60,3 +60,14 @@ REPO_LINK_PREFIX = "{{REPO_URL}}/blob/{{MAIN_BRANCH}}/"
 GUIDE = "TEMPLATE_GUIDE.md"
 
 FILES: dict[str, FileSpec] = {}
+
+FILES["INTENT.md"] = FileSpec(headings=(
+    "Problem", "Users and stakeholders", "Goals", "Non-goals", "Success metrics",
+    "Constraints", "Assumptions and open questions", "Decision filter"))
+FILES["RULES.md"] = FileSpec(headings=(
+    "How these rules work", "Code", "Structure", "Error handling",
+    "Logging and observability", "Testing", "Dependencies", "Security",
+    "Configuration", "Performance", "Documentation",
+    "Language and framework conventions", "Project structure", "Naming conventions",
+    "Project-specific rules", "Exceptions log"),
+    links=("docs/SECURITY.md", "docs/adr/README.md"), max_lines=220)
