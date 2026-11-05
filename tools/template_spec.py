@@ -108,3 +108,15 @@ FILES["docs/ONBOARDING.md"] = FileSpec(headings=(
     "Day 0: access", "Day 1: set up", "Week 1: goals", "Your buddy",
     "How we communicate", "Team contacts", "Tools and accounts", "Team rituals"),
     links=("docs/DEVELOPMENT.md", "INTENT.md", "docs/ARCHITECTURE.md", "RULES.md", "docs/RUNBOOK.md"))
+FILES["docs/DEPLOYMENT.md"] = FileSpec(headings=(
+    "Environments", "Promotion flow", "Release checklist", "Versioning", "Rollback",
+    "Feature flags", "Database migrations", "Deploy freezes", "Pipeline specifics"),
+    links=("docs/RUNBOOK.md", "CHANGELOG.md"))
+FILES["docs/RUNBOOK.md"] = FileSpec(headings=(
+    "Severity levels", "Incident process", "Roles", "Status updates", "Postmortems",
+    "Runbook entries", "Dashboards and alerts", "Escalation"),
+    links=("docs/DEPLOYMENT.md",))
+FILES["docs/SECURITY.md"] = FileSpec(headings=(
+    "Reporting a vulnerability", "Secrets", "Access control", "Dependency vulnerabilities",
+    "Data classification", "Secure coding", "Tools in use", "Compliance", "This project's data"),
+    links=("RULES.md", "docs/RUNBOOK.md"))
