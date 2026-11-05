@@ -71,3 +71,20 @@ FILES["RULES.md"] = FileSpec(headings=(
     "Language and framework conventions", "Project structure", "Naming conventions",
     "Project-specific rules", "Exceptions log"),
     links=("docs/SECURITY.md", "docs/adr/README.md"), max_lines=220)
+FILES["CONTRIBUTING.md"] = FileSpec(headings=(
+    "Workflow", "Branches", "Commits", "Pull requests", "Code review",
+    "Merging and reverting", "Definition of Done", "Team specifics"),
+    links=("RULES.md", "CHANGELOG.md", ".github/PULL_REQUEST_TEMPLATE.md", "docs/DEPLOYMENT.md"))
+FILES["CHANGELOG.md"] = FileSpec(headings=("[Unreleased]",))
+FILES[".github/PULL_REQUEST_TEMPLATE.md"] = FileSpec(headings=(
+    "Summary", "Why", "What changed", "How it was tested", "Screenshots",
+    "Risk and rollback", "Checklist"),
+    links=("RULES.md", "CHANGELOG.md", "CONTRIBUTING.md", "docs/adr/README.md"),
+    add_slot=False, purpose_line=False)
+FILES[".github/ISSUE_TEMPLATE/bug_report.md"] = FileSpec(headings=(
+    "Description", "Steps to reproduce", "Expected behavior", "Actual behavior",
+    "Environment", "Logs and screenshots", "Impact"), add_slot=False, purpose_line=False)
+FILES[".github/ISSUE_TEMPLATE/feature_request.md"] = FileSpec(headings=(
+    "Problem", "Goal served", "Proposed solution", "Alternatives considered",
+    "Acceptance criteria", "Out of scope"),
+    links=("INTENT.md",), add_slot=False, purpose_line=False)
