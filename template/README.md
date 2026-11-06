@@ -44,6 +44,7 @@ The last command keeps running; use a second terminal for anything else. Full se
 | [docs/SECURITY.md](docs/SECURITY.md) | You handle secrets, access, data, or find a vulnerability |
 | [docs/adr/README.md](docs/adr/README.md) | You make, or want the history of, a significant decision |
 | [docs/tasks/README.md](docs/tasks/README.md) | You start, plan, track or finish a piece of work |
+| [docs/CLAUDE_SKILLS.md](docs/CLAUDE_SKILLS.md) | You want to know which Claude command to use: `/dev-fast`, `/dev-medium`, `/dev-high` and more |
 
 ## Key links
 

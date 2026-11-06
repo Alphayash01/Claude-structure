@@ -8,6 +8,7 @@
 - [RULES.md](RULES.md): coding standards with rule IDs. Follow them; cite IDs when relevant.
 - [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md): components, data flow, key terms.
 - [docs/DEVELOPMENT.md](docs/DEVELOPMENT.md): setup, environment variables, commands.
+- [docs/CLAUDE_SKILLS.md](docs/CLAUDE_SKILLS.md): the modes `/dev-fast`, `/dev-medium`, `/dev-high`, and which command fits which job.
 - The task file for this branch. NNN is the digits right after `type/` in the branch name (`feat/123-export-csv` → `docs/tasks/123-*.md`); also check `docs/tasks/archive/`, which is read-only once merged. No number, no match, or several matches: ask. Never create a task file unasked. Process: [docs/tasks/README.md](docs/tasks/README.md).
 
 ## Working agreements

@@ -17,13 +17,13 @@ A starter set of team docs with senior-level defaults already written in. You ad
 
 ## Adopt it
 
-1. Copy the template into your new repository, including the hidden `.github/` folder:
+1. Copy the template into your new repository, including the hidden `.github/` and `.claude/` folders:
 
    ```sh
    cp -r template/. path/to/new-repo/
    ```
 
-   Check that `.github/` came along; some file managers skip hidden folders.
+   Check that `.github/` and `.claude/` came along; some file managers skip hidden folders. Without `.claude/`, the `/dev-fast`, `/dev-medium` and `/dev-high` commands are missing.
 2. Find-and-replace every placeholder in the [Placeholders](#placeholders) table across the repo.
 3. Fill the `ADD` slots, following the [Fill order](#fill-order).
 4. Read the built-in defaults (review turnaround, patch times, rollback target, severity levels) and edit any that don't fit your team.
@@ -48,12 +48,13 @@ Each file builds on the ones before it.
 12. **CHANGELOG.md**: add the first entry with your first release.
 13. **docs/adr/0001**: already written; just check that the date and deciders are filled.
 14. **docs/tasks/README.md**: works as-is; add any team conventions for task files.
+15. **docs/CLAUDE_SKILLS.md**: list your extra and stack-specific Claude skills.
 
 ## Placeholders
 
 | Placeholder | Meaning | Used in |
 |---|---|---|
-| `{{PROJECT_NAME}}` | Human-readable project name | README.md, INTENT.md, RULES.md, CONTRIBUTING.md, CHANGELOG.md, CLAUDE.md, docs/ARCHITECTURE.md, docs/ONBOARDING.md, docs/DEVELOPMENT.md, docs/DEPLOYMENT.md, docs/RUNBOOK.md, docs/SECURITY.md, docs/adr/README.md, docs/tasks/README.md |
+| `{{PROJECT_NAME}}` | Human-readable project name | README.md, INTENT.md, RULES.md, CONTRIBUTING.md, CHANGELOG.md, CLAUDE.md, docs/ARCHITECTURE.md, docs/ONBOARDING.md, docs/DEVELOPMENT.md, docs/DEPLOYMENT.md, docs/RUNBOOK.md, docs/SECURITY.md, docs/adr/README.md, docs/tasks/README.md, docs/CLAUDE_SKILLS.md |
 | `{{PROJECT_DESCRIPTION}}` | One-line description | README.md |
 | `{{TEAM_NAME}}` | Owning team | README.md, docs/ONBOARDING.md, docs/RUNBOOK.md, docs/adr/0001-record-architecture-decisions.md |
 | `{{TEAM_CHANNEL}}` | Team chat channel | README.md, docs/ONBOARDING.md, docs/DEPLOYMENT.md |

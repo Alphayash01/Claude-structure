@@ -57,7 +57,7 @@ template/
       feature_request.md
 ```
 
-19 files total. Extended to 22 by `2026-11-06-task-docs-design.md` (adds `docs/tasks/`).
+19 files total. Extended to 22 by `2026-11-06-task-docs-design.md` (adds `docs/tasks/`), then to 26 by the dev modes: `docs/CLAUDE_SKILLS.md` and `.claude/skills/{dev-fast,dev-medium,dev-high}/SKILL.md` (project skills; `effort` low/medium/high; `disable-model-invocation: true` so they run only when typed). Plugin names (superpowers, agent-skills) are allowed in those four files and in `docs/tasks/` only.
 
 ## 3. Content model
 

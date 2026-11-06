@@ -144,6 +144,16 @@ class CheckerTest(unittest.TestCase):
         good = '---\nname: Bug report\nabout: Report a bug\nlabels: bug\ntitle: "[Bug]: "\n---\n'
         self.assertEqual(self.check(rel, good, FORM), [])
 
+    def test_skill_front_matter(self):
+        rel = ".claude/skills/dev-fast/SKILL.md"
+        good = ("---\nname: dev-fast\ndescription: Fast mode\ndisable-model-invocation: true\n"
+                'argument-hint: "[#issue] what"\neffort: low\n---\n')
+        self.assertEqual(self.check(rel, good, FORM), [])
+        self.assertHas(self.check(rel, "---\nname: dev-fast\ndisable-model-invocation: true\n---\n", FORM),
+                       "invalid front matter")
+        self.assertHas(self.check(rel, "---\nname: dev-fast\ndescription: x\n---\n", FORM),
+                       "skill must set disable-model-invocation: true")
+
     def test_slugify(self):
         self.assertEqual(ct.slugify("Day 0: access"), "day-0-access")
         self.assertEqual(ct.slugify("[Unreleased]"), "unreleased")

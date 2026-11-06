@@ -19,6 +19,9 @@ REQUIRED_FILES = (
     "docs/adr/README.md", "docs/adr/0000-template.md",
     "docs/adr/0001-record-architecture-decisions.md",
     "docs/tasks/README.md", "docs/tasks/TEMPLATE.md", "docs/tasks/archive/README.md",
+    "docs/CLAUDE_SKILLS.md",
+    ".claude/skills/dev-fast/SKILL.md", ".claude/skills/dev-medium/SKILL.md",
+    ".claude/skills/dev-high/SKILL.md",
     ".github/PULL_REQUEST_TEMPLATE.md",
     ".github/ISSUE_TEMPLATE/bug_report.md",
     ".github/ISSUE_TEMPLATE/feature_request.md",
@@ -109,7 +112,8 @@ FILES["docs/DEVELOPMENT.md"] = FileSpec(headings=(
 FILES["docs/ONBOARDING.md"] = FileSpec(headings=(
     "Day 0: access", "Day 1: set up", "Week 1: goals", "Your buddy",
     "How we communicate", "Team contacts", "Tools and accounts", "Team rituals"),
-    links=("docs/DEVELOPMENT.md", "INTENT.md", "docs/ARCHITECTURE.md", "RULES.md", "docs/RUNBOOK.md"))
+    links=("docs/DEVELOPMENT.md", "INTENT.md", "docs/ARCHITECTURE.md", "RULES.md", "docs/RUNBOOK.md",
+           "docs/CLAUDE_SKILLS.md"))
 FILES["docs/DEPLOYMENT.md"] = FileSpec(headings=(
     "Environments", "Promotion flow", "Release checklist", "Versioning", "Rollback",
     "Feature flags", "Database migrations", "Deploy freezes", "Pipeline specifics"),
@@ -128,11 +132,11 @@ FILES["README.md"] = FileSpec(headings=(
     links=("INTENT.md", "RULES.md", "CONTRIBUTING.md", "CHANGELOG.md", "CLAUDE.md",
            "docs/ARCHITECTURE.md", "docs/ONBOARDING.md", "docs/DEVELOPMENT.md",
            "docs/DEPLOYMENT.md", "docs/RUNBOOK.md", "docs/SECURITY.md", "docs/adr/README.md",
-           "docs/tasks/README.md"))
+           "docs/tasks/README.md", "docs/CLAUDE_SKILLS.md"))
 FILES["CLAUDE.md"] = FileSpec(headings=(
     "Read first", "Working agreements", "Commands", "Gotchas", "No-go areas", "Domain notes"),
     links=("INTENT.md", "RULES.md", "docs/ARCHITECTURE.md", "docs/DEVELOPMENT.md",
-           "docs/tasks/README.md"), max_lines=60)
+           "docs/tasks/README.md", "docs/CLAUDE_SKILLS.md"), max_lines=60)
 FILES["TEMPLATE_GUIDE.md"] = FileSpec(headings=(
     "What this is", "Adopt it", "Fill order", "Placeholders", "Find unfinished work",
     "Keep docs healthy", "When you are done"), add_slot=False)
@@ -145,3 +149,13 @@ FILES["docs/tasks/TEMPLATE.md"] = FileSpec(headings=(
     "Goal", "Scope", "Design", "Plan", "Progress", "Decisions", "Open questions", "Done summary"),
     add_slot=False, purpose_line=False)
 FILES["docs/tasks/archive/README.md"] = FileSpec(links=("docs/tasks/README.md",), add_slot=False)
+FILES["docs/CLAUDE_SKILLS.md"] = FileSpec(headings=(
+    "Pick a mode", "How commands work", "Install once", "Commands by job",
+    "Optional: agent-skills workflow", "Your extra skills", "Stack skills", "Tips"))
+_SKILL = dict(add_slot=False, purpose_line=False)
+FILES[".claude/skills/dev-fast/SKILL.md"] = FileSpec(
+    headings=("Stop and escalate", "Steps", "Report"), **_SKILL)
+FILES[".claude/skills/dev-medium/SKILL.md"] = FileSpec(
+    headings=("Stop and escalate", "Steps", "Report"), **_SKILL)
+FILES[".claude/skills/dev-high/SKILL.md"] = FileSpec(
+    headings=("Before you start", "Steps", "Report"), **_SKILL)

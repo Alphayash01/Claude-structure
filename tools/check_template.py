@@ -25,7 +25,7 @@ INLINE_LINK_RE = re.compile(r"\[[^\]]*\]\(([^)\s]+)(?:\s+\"[^\"]*\")?\)")
 REF_LINK_RE = re.compile(r"^\s*\[[^\]]+\]:\s*(\S+)")
 INLINE_CODE_RE = re.compile(r"`[^`]*`")
 HEADING_RE = re.compile(r"^#{1,6}\s+(.+?)\s*$")
-FRONT_KEY_RE = re.compile(r"^([a-z_]+):\s*(.*)$")
+FRONT_KEY_RE = re.compile(r"^([a-z_-]+):\s*(.*)$")
 ADD_RE = re.compile(r"<!--\s*ADD\b")
 ADD_SLOT_RE = re.compile(r"<!--\s*ADD:")
 DENY_RES = [(term, re.compile(rf"\b{re.escape(term)}\b", re.IGNORECASE)) for term in DENYLIST]
@@ -213,7 +213,7 @@ def check_denylist(rel, rows):
     return errors
 
 
-def check_front_matter(rel, lines):
+def check_front_matter(rel, lines, required):
     invalid = [f"{rel}:1: invalid front matter"]
     if not lines or lines[0].strip() != "---":
         return invalid
@@ -228,7 +228,11 @@ def check_front_matter(rel, lines):
         if not m:
             return invalid
         keys[m.group(1)] = m.group(2).strip().strip("\"'")
-    return [] if keys.get("name") and keys.get("about") else invalid
+    if not all(keys.get(key) for key in required):
+        return invalid
+    if rel.startswith(".claude/skills/") and keys.get("disable-model-invocation") != "true":
+        return [f"{rel}:1: skill must set disable-model-invocation: true (modes run only when typed)"]
+    return []
 
 
 def check_file(root, rel, spec, strict_links=True):
@@ -251,7 +255,9 @@ def check_file(root, rel, spec, strict_links=True):
         errors.append(f"{rel}:0: exceeds {spec.max_lines} lines ({len(lines)})")
     errors += check_denylist(rel, rows)
     if rel.startswith(".github/ISSUE_TEMPLATE/"):
-        errors += check_front_matter(rel, lines)
+        errors += check_front_matter(rel, lines, ("name", "about"))
+    if rel.startswith(".claude/skills/") and rel.endswith("/SKILL.md"):
+        errors += check_front_matter(rel, lines, ("name", "description"))
     return errors
 
 

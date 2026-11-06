@@ -21,6 +21,7 @@ Request these before or on the first day. Your buddy or {{TECH_LEAD}} can approv
 
 - [ ] Follow [DEVELOPMENT.md](DEVELOPMENT.md) until `{{TEST_CMD}}` passes
 - [ ] Run the app locally and click through the main journey
+- [ ] Install the Claude Code plugins in [CLAUDE_SKILLS.md](CLAUDE_SKILLS.md#install-once) and read *Pick a mode*
 - [ ] Fix anything in the setup docs that was wrong or missing; that's your first PR
 
 <!-- ADD: team-specific day-1 steps -->
