@@ -79,7 +79,7 @@ BREAKING CHANGE: clients must call /v2 endpoints.
 A change is done when all of these are true:
 
 - [ ] Acceptance criteria in the issue are met
-- [ ] Task file has a Done summary and is moved to `docs/tasks/archive/`
+- [ ] Task file Progress is current; if this change completes the task, its Done summary is written and it is moved to `docs/tasks/archive/`
 - [ ] Tests added or updated (TEST-1, TEST-2) and CI is green
 - [ ] Reviewed and approved
 - [ ] Docs updated in the same PR (DOC-1)

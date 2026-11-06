@@ -47,19 +47,20 @@ Each file builds on the ones before it.
 11. **CLAUDE.md**: gotchas and no-go areas, once you know them.
 12. **CHANGELOG.md**: add the first entry with your first release.
 13. **docs/adr/0001**: already written; just check that the date and deciders are filled.
+14. **docs/tasks/README.md**: works as-is; add any team conventions for task files.
 
 ## Placeholders
 
 | Placeholder | Meaning | Used in |
 |---|---|---|
-| `{{PROJECT_NAME}}` | Human-readable project name | Every doc title (13 files) |
+| `{{PROJECT_NAME}}` | Human-readable project name | README.md, INTENT.md, RULES.md, CONTRIBUTING.md, CHANGELOG.md, CLAUDE.md, docs/ARCHITECTURE.md, docs/ONBOARDING.md, docs/DEVELOPMENT.md, docs/DEPLOYMENT.md, docs/RUNBOOK.md, docs/SECURITY.md, docs/adr/README.md, docs/tasks/README.md |
 | `{{PROJECT_DESCRIPTION}}` | One-line description | README.md |
-| `{{TEAM_NAME}}` | Owning team | README.md, docs/ONBOARDING.md, docs/RUNBOOK.md, docs/adr/0001 |
+| `{{TEAM_NAME}}` | Owning team | README.md, docs/ONBOARDING.md, docs/RUNBOOK.md, docs/adr/0001-record-architecture-decisions.md |
 | `{{TEAM_CHANNEL}}` | Team chat channel | README.md, docs/ONBOARDING.md, docs/DEPLOYMENT.md |
 | `{{TECH_LEAD}}` | Technical lead / primary owner | README.md, INTENT.md, RULES.md, CONTRIBUTING.md, docs/ARCHITECTURE.md, docs/ONBOARDING.md, docs/DEPLOYMENT.md, docs/RUNBOOK.md |
-| `{{REPO_URL}}` | Repository URL | README.md, CHANGELOG.md, docs/ONBOARDING.md, docs/DEVELOPMENT.md, .github/ PR and feature templates |
-| `{{ISSUE_TRACKER_URL}}` | Issue tracker URL | README.md, CONTRIBUTING.md, docs/ONBOARDING.md |
-| `{{MAIN_BRANCH}}` | Default branch name | CONTRIBUTING.md, .github/ PR and feature templates |
+| `{{REPO_URL}}` | Repository URL | README.md, CHANGELOG.md, docs/ONBOARDING.md, docs/DEVELOPMENT.md, .github/PULL_REQUEST_TEMPLATE.md, .github/ISSUE_TEMPLATE/feature_request.md |
+| `{{ISSUE_TRACKER_URL}}` | Issue tracker URL | README.md, CONTRIBUTING.md, docs/ONBOARDING.md, docs/tasks/README.md |
+| `{{MAIN_BRANCH}}` | Default branch name | CONTRIBUTING.md, .github/PULL_REQUEST_TEMPLATE.md, .github/ISSUE_TEMPLATE/feature_request.md |
 | `{{REQUIRED_APPROVALS}}` | Number of PR approvals required | CONTRIBUTING.md |
 | `{{ONCALL_CONTACT}}` | On-call rotation / pager | README.md, docs/ONBOARDING.md, docs/RUNBOOK.md |
 | `{{SECURITY_CONTACT}}` | Internal security contact | docs/RUNBOOK.md, docs/SECURITY.md |
@@ -68,7 +69,7 @@ Each file builds on the ones before it.
 | `{{TEST_CMD}}` | Run tests | README.md, CLAUDE.md, docs/ONBOARDING.md, docs/DEVELOPMENT.md |
 | `{{LINT_CMD}}` | Lint / format check | CLAUDE.md, docs/DEVELOPMENT.md |
 | `{{BUILD_CMD}}` | Production build | CLAUDE.md, docs/DEVELOPMENT.md |
-| `{{ADOPTION_DATE}}` | Date the template was adopted (ADR 0001) | docs/adr/README.md, docs/adr/0001 |
+| `{{ADOPTION_DATE}}` | Date the template was adopted (ADR 0001) | docs/adr/README.md, docs/adr/0001-record-architecture-decisions.md |
 
 ## Find unfinished work
 

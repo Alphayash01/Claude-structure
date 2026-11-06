@@ -167,6 +167,12 @@ class CheckerTest(unittest.TestCase):
         self.write("TEMPLATE_GUIDE.md", "| `{{PROJECT_NAME}}` | Name | README.md |\n")
         self.assertHas(ct.check_all(self.root),
                        "TEMPLATE_GUIDE.md row for {{PROJECT_NAME}} misses INTENT.md")
+        self.write("TEMPLATE_GUIDE.md", "| `{{PROJECT_NAME}}` | Name | docs/adr/README.md, INTENT.md |\n")
+        self.assertHas(ct.check_all(self.root),
+                       "TEMPLATE_GUIDE.md row for {{PROJECT_NAME}} misses README.md")
+        self.write("TEMPLATE_GUIDE.md", "| Marker | Example | `{{PROJECT_NAME}}` |\n"
+                                        "| `{{PROJECT_NAME}}` | Name | README.md, INTENT.md |\n")
+        self.assertFalse(any("row for {{PROJECT_NAME}}" in e for e in ct.check_all(self.root)))
 
     def test_placeholder_usage(self):
         self.write("README.md", "{{PROJECT_NAME}}\n")

@@ -61,4 +61,4 @@ Uses plain hint comments, not `ADD:` markers: it is filled per task, not at adop
 
 ## 6. Acceptance
 
-The original spec's §6 checks apply to all 22 files. `TEMPLATE.md` and `archive/README.md` need no `ADD` slot; `TEMPLATE.md` needs no purpose line (it is a form). CONTRIBUTING, CLAUDE, README and the PR template must link `docs/tasks/README.md`.
+The original spec's §6 checks apply to all 22 files, with one addition to §6.6's allowed names: the superpowers plugin, mentioned only in `docs/tasks/` and always as optional ("if you use…"). Links inside task files are root-relative (`/docs/...`) so they survive the move to `archive/`; the checker resolves them from the template root. `TEMPLATE.md` and `archive/README.md` need no `ADD` slot; `TEMPLATE.md` needs no purpose line (it is a form). CONTRIBUTING, CLAUDE, README and the PR template must link `docs/tasks/README.md`.

@@ -4,7 +4,7 @@
 
 ## Why
 
-<!-- The problem this solves. Link the issue: "Closes #123". -->
+<!-- The problem this solves. Link the issue: "Closes #123" if this PR finishes the task, otherwise "Refs #123". -->
 
 ## What changed
 
@@ -25,7 +25,7 @@
 ## Checklist
 
 - [ ] PR follows the [process]({{REPO_URL}}/blob/{{MAIN_BRANCH}}/CONTRIBUTING.md#pull-requests): small, linked issue, self-reviewed
-- [ ] [Task file]({{REPO_URL}}/blob/{{MAIN_BRANCH}}/docs/tasks/README.md) updated; if this PR finishes the task, Done summary written and file archived
+- [ ] [Task file]({{REPO_URL}}/blob/{{MAIN_BRANCH}}/docs/tasks/README.md) Progress is current; if this PR finishes the task, Done summary written and file archived
 - [ ] Tests added or updated, and CI is green
 - [ ] Docs updated in this PR ([DOC-1]({{REPO_URL}}/blob/{{MAIN_BRANCH}}/RULES.md#documentation))
 - [ ] [CHANGELOG]({{REPO_URL}}/blob/{{MAIN_BRANCH}}/CHANGELOG.md) entry under *Unreleased* for user-visible changes

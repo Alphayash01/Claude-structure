@@ -6,7 +6,7 @@
 - **Serves:** <!-- goal from INTENT.md, e.g. G2 -->
 - **Owner:** <!-- who is doing the work -->
 
-<!-- Copy this file to docs/tasks/NNN-short-slug.md. Status moves Planned → In progress → (Blocked) → Done. Delete hint comments as you fill sections. -->
+<!-- Copy this file to docs/tasks/NNN-short-slug.md (NNN = issue number, not zero-padded). Status moves Planned → In progress → (Blocked) → Done. Write links starting with / (e.g. /docs/adr/0005-x.md) so they still work after this file moves to archive/. Delete hint comments as you fill sections. -->
 
 ## Goal
 
@@ -24,11 +24,11 @@
 
 ## Design
 
-<!-- How you will do it. Two lines for a small fix; more for a feature. Big tasks: link the superpowers spec here. Follow-up work: link the archived task it follows. -->
+<!-- How you will do it. Two lines for a small fix; more for a feature. If you use the superpowers plugin, link its spec here. Follow-up work: link the archived task it follows (/docs/tasks/archive/NNN-slug.md). -->
 
 ## Plan
 
-<!-- Small steps, each with a checkable result. Big tasks: link the superpowers plan and mirror its task list. -->
+<!-- Small steps, each with a checkable result. If you use the superpowers plugin, link its plan and mirror its task list. -->
 
 - [ ]
 - [ ]
@@ -53,7 +53,7 @@
 
 ## Done summary
 
-<!-- Fill in the final PR, then set Status: Done and git mv this file to docs/tasks/archive/. -->
+<!-- Fill in the PR that finishes the task, then set Status: Done and git mv this file to docs/tasks/archive/. Never edit it once merged there. -->
 
 **What changed:**
 

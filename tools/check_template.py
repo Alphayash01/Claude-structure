@@ -143,6 +143,9 @@ def resolve(rel, target):
         kind, raw, base = "repo", target[len(REPO_LINK_PREFIX):], ""
     elif target.startswith("{{"):
         return None
+    elif target.startswith("/") and not target.startswith("//"):
+        # Root-relative: GitHub resolves it from the repo root, so it survives a file move.
+        kind, raw, base = "root", target[1:], ""
     else:
         kind, raw, base = "rel", target, posixpath.dirname(rel)
     path, _, anchor = raw.partition("#")
@@ -163,7 +166,7 @@ def check_links(root, rel, rows, spec, strict):
         where = f"{rel}:{n}:"
         if path == ".." or path.startswith(("../", "/")):
             errors.append(f"{where} link escapes template: {target}")
-        elif rel.startswith(".github/") and kind == "rel" and path != rel:
+        elif rel.startswith(".github/") and kind in ("rel", "root") and path != rel:
             errors.append(f"{where} relative link in .github form: {target}")
         elif path == GUIDE and rel != GUIDE:
             errors.append(f"{where} link to TEMPLATE_GUIDE.md")
@@ -274,7 +277,8 @@ def check_all(root):
             rel = path.relative_to(root).as_posix()
             if path.is_file() and rel not in REQUIRED_FILES:
                 errors.append(f"{rel}:0: unexpected file")
-    for name, files in placeholder_usage(root).items():
+    usage = placeholder_usage(root)
+    for name, files in usage.items():
         if not files:
             errors.append(f"(registry):0: registry placeholder {ph(name)} unused")
     guide = root / GUIDE
@@ -282,6 +286,15 @@ def check_all(root):
         text = guide.read_text(encoding="utf-8")
         errors += [f"{GUIDE}:0: TEMPLATE_GUIDE.md does not list {ph(name)}"
                    for name in REGISTRY if ph(name) not in text]
+        rows = [line for line in text.splitlines() if line.startswith("|")]
+        for name, files in usage.items():
+            # The registry row is the one whose first cell is the placeholder itself.
+            cells = [[c.strip() for c in line.strip().strip("|").split("|")] for line in rows]
+            row = next((c for c in cells if c[0].strip("`") == ph(name)), None)
+            if row is not None:
+                listed = {item.strip() for item in row[-1].split(",")}
+                errors += [f"{GUIDE}:0: TEMPLATE_GUIDE.md row for {ph(name)} misses {rel}"
+                           for rel in files if rel not in listed]
     return errors
 
 
