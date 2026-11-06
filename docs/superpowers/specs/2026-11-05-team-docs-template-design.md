@@ -57,7 +57,7 @@ template/
       feature_request.md
 ```
 
-19 files total.
+19 files total. Extended to 22 by `2026-11-06-task-docs-design.md` (adds `docs/tasks/`).
 
 ## 3. Content model
 
