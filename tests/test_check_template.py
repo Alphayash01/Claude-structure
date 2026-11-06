@@ -61,6 +61,13 @@ class CheckerTest(unittest.TestCase):
         self.write("RULES.md", "# R\n")
         self.assertHas(self.check("A.md", CLEAN + "[r](rules.md)\n"), "broken link")
 
+    def test_root_relative_link_survives_move(self):
+        self.write("RULES.md", "# R\n\n## Testing\n")
+        text = CLEAN + "[r](/RULES.md#testing)\n"
+        self.assertEqual(self.check("docs/tasks/7-x.md", text), [])
+        self.assertEqual(self.check("docs/tasks/archive/7-x.md", text), [])
+        self.assertHas(self.check("docs/tasks/7-x.md", CLEAN + "[m](/missing.md)\n"), "broken link")
+
     def test_add_marker_in_code_block_flagged(self):
         text = CLEAN + f"{FENCE}\n<!-- ADD: x -->\n{FENCE}\n"
         self.assertHas(self.check("A.md", text), "ADD marker inside code block")
@@ -153,6 +160,13 @@ class CheckerTest(unittest.TestCase):
         errors = ct.check_all(self.root)
         self.assertHas(errors, "TEMPLATE_GUIDE.md does not list {{TEAM_NAME}}")
         self.assertHas(errors, "registry placeholder {{PROJECT_NAME}} unused")
+
+    def test_guide_row_must_list_every_file_using_placeholder(self):
+        self.write("README.md", "{{PROJECT_NAME}}\n")
+        self.write("INTENT.md", "{{PROJECT_NAME}}\n")
+        self.write("TEMPLATE_GUIDE.md", "| `{{PROJECT_NAME}}` | Name | README.md |\n")
+        self.assertHas(ct.check_all(self.root),
+                       "TEMPLATE_GUIDE.md row for {{PROJECT_NAME}} misses INTENT.md")
 
     def test_placeholder_usage(self):
         self.write("README.md", "{{PROJECT_NAME}}\n")
