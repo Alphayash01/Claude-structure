@@ -30,6 +30,7 @@ Request these before or on the first day. Your buddy or {{TECH_LEAD}} can approv
 - [ ] Read [INTENT.md](../INTENT.md): why we exist and what we don't do
 - [ ] Read [ARCHITECTURE.md](ARCHITECTURE.md) and the ADRs it links
 - [ ] Read [RULES.md](../RULES.md) and [CONTRIBUTING.md](../CONTRIBUTING.md)
+- [ ] Read [docs/tasks/README.md](tasks/README.md) and a few archived task files
 - [ ] Ship a small first PR (a good-first-issue or a docs fix)
 - [ ] Shadow one on-call shift and read the [RUNBOOK](RUNBOOK.md)
 - [ ] Have a 1:1 with {{TECH_LEAD}} about expectations and growth

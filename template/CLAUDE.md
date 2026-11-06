@@ -8,9 +8,11 @@
 - [RULES.md](RULES.md): coding standards with rule IDs. Follow them; cite IDs when relevant.
 - [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md): components, data flow, key terms.
 - [docs/DEVELOPMENT.md](docs/DEVELOPMENT.md): setup, environment variables, commands.
+- The task file for this branch: `docs/tasks/NNN-*.md`, where NNN is the issue number in the branch name. Process: [docs/tasks/README.md](docs/tasks/README.md).
 
 ## Working agreements
 
+- Read the task file before starting. Propose updates to its Progress and Decisions at each milestone and before ending a session; save them only after the human approves.
 - Follow RULES.md. If a rule blocks you, say so; don't silently work around it.
 - Keep diffs small and focused on the task. No drive-by refactors.
 - Run `{{TEST_CMD}}` and `{{LINT_CMD}}` before saying work is done, and report the real result.

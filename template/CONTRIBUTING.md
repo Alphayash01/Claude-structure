@@ -13,12 +13,13 @@ flowchart LR
 ```
 
 1. Start from an issue in {{ISSUE_TRACKER_URL}} so the *why* is written down.
-2. Branch, commit, open a PR, get it reviewed, squash-merge.
-3. Deploy following [docs/DEPLOYMENT.md](docs/DEPLOYMENT.md).
+2. Create the branch and the task file for the issue ([docs/tasks/README.md](docs/tasks/README.md#start-a-task)). The task file holds the plan, progress and decisions.
+3. Commit, open a PR, get it reviewed, squash-merge.
+4. Deploy following [docs/DEPLOYMENT.md](docs/DEPLOYMENT.md).
 
 ## Branches
 
-- Branch from the latest `{{MAIN_BRANCH}}`. Name it `type/short-description`, e.g. `feat/export-csv`, `fix/login-timeout`.
+- Branch from the latest `{{MAIN_BRANCH}}`. Name it `type/NNN-short-description` with the issue number, e.g. `feat/123-export-csv`, `fix/98-login-timeout`. The number ties the branch to its issue and task file.
 - Types: `feat`, `fix`, `docs`, `refactor`, `test`, `chore`.
 - Keep branches short-lived: merge within 2 days. Long-lived branches mean painful merges.
 - Hide unfinished work behind a feature flag rather than keeping a branch open.
@@ -78,6 +79,7 @@ BREAKING CHANGE: clients must call /v2 endpoints.
 A change is done when all of these are true:
 
 - [ ] Acceptance criteria in the issue are met
+- [ ] Task file has a Done summary and is moved to `docs/tasks/archive/`
 - [ ] Tests added or updated (TEST-1, TEST-2) and CI is green
 - [ ] Reviewed and approved
 - [ ] Docs updated in the same PR (DOC-1)

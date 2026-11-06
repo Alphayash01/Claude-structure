@@ -18,6 +18,7 @@ REQUIRED_FILES = (
     "docs/DEPLOYMENT.md", "docs/RUNBOOK.md", "docs/SECURITY.md",
     "docs/adr/README.md", "docs/adr/0000-template.md",
     "docs/adr/0001-record-architecture-decisions.md",
+    "docs/tasks/README.md", "docs/tasks/TEMPLATE.md", "docs/tasks/archive/README.md",
     ".github/PULL_REQUEST_TEMPLATE.md",
     ".github/ISSUE_TEMPLATE/bug_report.md",
     ".github/ISSUE_TEMPLATE/feature_request.md",
@@ -74,12 +75,13 @@ FILES["RULES.md"] = FileSpec(headings=(
 FILES["CONTRIBUTING.md"] = FileSpec(headings=(
     "Workflow", "Branches", "Commits", "Pull requests", "Code review",
     "Merging and reverting", "Definition of Done", "Team specifics"),
-    links=("RULES.md", "CHANGELOG.md", ".github/PULL_REQUEST_TEMPLATE.md", "docs/DEPLOYMENT.md"))
+    links=("RULES.md", "CHANGELOG.md", ".github/PULL_REQUEST_TEMPLATE.md", "docs/DEPLOYMENT.md",
+           "docs/tasks/README.md"))
 FILES["CHANGELOG.md"] = FileSpec(headings=("[Unreleased]",))
 FILES[".github/PULL_REQUEST_TEMPLATE.md"] = FileSpec(headings=(
     "Summary", "Why", "What changed", "How it was tested", "Screenshots",
     "Risk and rollback", "Checklist"),
-    links=("RULES.md", "CHANGELOG.md", "CONTRIBUTING.md", "docs/adr/README.md"),
+    links=("RULES.md", "CHANGELOG.md", "CONTRIBUTING.md", "docs/adr/README.md", "docs/tasks/README.md"),
     add_slot=False, purpose_line=False)
 FILES[".github/ISSUE_TEMPLATE/bug_report.md"] = FileSpec(headings=(
     "Description", "Steps to reproduce", "Expected behavior", "Actual behavior",
@@ -125,10 +127,21 @@ FILES["README.md"] = FileSpec(headings=(
     "Getting help", "Ownership"),
     links=("INTENT.md", "RULES.md", "CONTRIBUTING.md", "CHANGELOG.md", "CLAUDE.md",
            "docs/ARCHITECTURE.md", "docs/ONBOARDING.md", "docs/DEVELOPMENT.md",
-           "docs/DEPLOYMENT.md", "docs/RUNBOOK.md", "docs/SECURITY.md", "docs/adr/README.md"))
+           "docs/DEPLOYMENT.md", "docs/RUNBOOK.md", "docs/SECURITY.md", "docs/adr/README.md",
+           "docs/tasks/README.md"))
 FILES["CLAUDE.md"] = FileSpec(headings=(
     "Read first", "Working agreements", "Commands", "Gotchas", "No-go areas", "Domain notes"),
-    links=("INTENT.md", "RULES.md", "docs/ARCHITECTURE.md", "docs/DEVELOPMENT.md"), max_lines=60)
+    links=("INTENT.md", "RULES.md", "docs/ARCHITECTURE.md", "docs/DEVELOPMENT.md",
+           "docs/tasks/README.md"), max_lines=60)
 FILES["TEMPLATE_GUIDE.md"] = FileSpec(headings=(
     "What this is", "Adopt it", "Fill order", "Placeholders", "Find unfinished work",
     "Keep docs healthy", "When you are done"), add_slot=False)
+FILES["docs/tasks/README.md"] = FileSpec(headings=(
+    "What goes here", "Start a task", "Plan", "Work", "Change a task mid-flight",
+    "Finish", "Change a finished task", "Big tasks with superpowers", "Team conventions"),
+    links=("docs/tasks/TEMPLATE.md", "docs/tasks/archive/README.md", "INTENT.md", "CHANGELOG.md",
+           "docs/adr/README.md"))
+FILES["docs/tasks/TEMPLATE.md"] = FileSpec(headings=(
+    "Goal", "Scope", "Design", "Plan", "Progress", "Decisions", "Open questions", "Done summary"),
+    add_slot=False, purpose_line=False)
+FILES["docs/tasks/archive/README.md"] = FileSpec(links=("docs/tasks/README.md",), add_slot=False)
